@@ -7,8 +7,23 @@ Vercel에 배포된 실제 서비스 주소는 아래입니다.
 
 앱인토스 WebView 미니앱을 만들 때도 이 주소를 그대로 사용하면 됩니다.
 
-### Vercel에서 404가 나올 때
-배포는 됐는데 `https://destinylab.vercel.app/` 에서 404가 나오면, Vercel 빌드 설정을 확인하세요.
+### Vercel에서 "Build Failed" 또는 404가 나올 때
+
+**1) 저장소가 맞는지 확인**  
+Vercel이 빌드하는 저장소가 **이 프로젝트 전체 코드**가 들어 있는 곳이어야 합니다.  
+- Vercel 로그에 `Cloning .../destinylab`, `Initial commit` 만 보이면, **destinylab** 저장소에 아직 최신 코드가 push 안 된 상태일 수 있습니다.  
+- 이 폴더(`destiny-app`)에서 아래처럼 **destinylab** 원격이 연결돼 있는지 확인한 뒤, **최신 코드를 push** 하세요.
+
+```bash
+git remote -v
+# destinylab 이라면:
+git add .
+git commit -m "Add build script, vercel.json, full app code"
+git push -u origin main
+```
+
+**2) 빌드 설정**  
+배포는 됐는데 404만 나오면, Vercel 빌드 설정을 확인하세요.
 
 1. [Vercel 대시보드](https://vercel.com) → **destinylab** 프로젝트 → **Settings**
 2. **General** → **Build & Development Settings**
